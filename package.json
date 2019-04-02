@@ -1,14 +1,14 @@
 {
-  "name": "anchor-markdown-header",
-  "version": "0.5.7",
-  "description": "Generates an anchor for a markdown header.",
+  "name": "anchor-markdown-header-compatible-with-hexo",
+  "version": "0.0.1",
+  "description": "Generates an anchor for a markdown header. Add a new mode for hexo.",
   "main": "anchor-markdown-header.js",
   "scripts": {
     "test": "tap test/*.js"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/thlorenz/anchor-markdown-header.git"
+    "url": "git://github.com/lechengyu/anchor-markdown-header.git"
   },
   "keywords": [
     "markdown",
@@ -18,7 +18,7 @@
     "github",
     "readme"
   ],
-  "author": "Thorsten Lorenz <thlorenz@gmx.de> (thlorenz.com)",
+  "author": "lechengyu <yulecheng@gmail.com>",
   "license": "MIT",
   "readmeFilename": "README.md",
   "gitHead": "dcde154040d17d321664a7efc38e8531330335f9",
