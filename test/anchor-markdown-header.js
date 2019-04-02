@@ -153,3 +153,17 @@ test('\ngenerating anchor for non-english header', function (t) {
   ].forEach(function (x) { check(x[0], x[1], x[2]) });
   t.end();
 })
+
+test('\ngenerating anchor in hexo mode', function (t) {
+
+  var check = checkResult.bind(null, t, 'hexo', undefined);
+
+  [ [ 'intro', null,  '#intro' ]
+  , [ 'intro', 0,  '#intro' ]
+  , [ 'intro', 1,  '#intro-1' ]
+  , [ '1.1. About Unicode', 0, '#1-1-About-Unicode'],
+  , [ '2.2. About.###！！！Unicode', 0, '#2-2-About-%EF%BC%81%EF%BC%81%EF%BC%81Unicode']
+  , [ '2.3.1. 编码规则', 0, '#2-3-1-%E7%BC%96%E7%A0%81%E8%A7%84%E5%88%99']
+  ].forEach(function (x) { check(x[0], x[1], x[2]) });
+  t.end();
+})

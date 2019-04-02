@@ -1,6 +1,7 @@
 'use strict';
 
 var emojiRegex = require('emoji-regex');
+var util = require('hexo-util');
 
 // https://github.com/joyent/node/blob/192192a09e2d2e0d6bdd0934f602d2dbbf10ed06/tools/doc/html.js#L172-L183
 function getNodejsId(text, repetition) {
@@ -78,6 +79,24 @@ function getGhostId(text) {
   return text;
 }
 
+function getHexoId(text, repetition) {
+  text = basicHexoId(text);
+
+  // If no repetition, or if the repetition is 0 then ignore. Otherwise append '-' and the number.
+  if (repetition) {
+    text += '-' + repetition;
+  }
+
+  // Strip emojis
+  text = text.replace(emojiRegex(), '')
+
+  return text;
+}
+
+function basicHexoId(text) {
+  return util.slugize(text);
+}
+
 // see: https://github.com/gitlabhq/gitlabhq/blob/master/doc/user/markdown.md#header-ids-and-links
 function getGitlabId(text, repetition) {
   text = text
@@ -132,6 +151,9 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
     case 'ghost.org':
       replace = getGhostId;
       break;
+    case 'hexo':
+      replace = getHexoId;
+      break;
     default:
       throw new Error('Unknown mode: ' + mode);
   }
@@ -148,7 +170,8 @@ module.exports = function anchorMarkdownHeader(header, mode, repetition, moduleN
     return result;
   }
 
-  var href = replace(asciiOnlyToLowerCase(header.trim()), repetition);
+  // if is on hexo mode, leave the header string unchanged
+  var href = replace(mode === 'hexo' ? header.trim() : asciiOnlyToLowerCase(header.trim()), repetition);
 
   return '[' + header + '](#' + encodeURI(href) + ')';
 };

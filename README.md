@@ -2,6 +2,17 @@
 
 Generates an anchor for a markdown header.
 
+## Add A New Anchor Mode for Hexo
+
+```js
+var anchor = require('anchor-markdown-header');
+anchor('1.1. About Unicode');
+// --> [1.1. About Unicode](#11-about-unicode)
+anchor('1.1. About Unicode','hexo');
+// --> [1.1. About Unicode](#1-1-About-Unicode)
+// compare to github mode, hexo mode not to transform the string to lower case, and not join the level number together
+```
+
 ## Example
 
 ```js

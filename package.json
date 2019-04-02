@@ -26,6 +26,7 @@
     "tap": "~0.4.8"
   },
   "dependencies": {
-    "emoji-regex": "~6.1.0"
+    "emoji-regex": "~6.1.0",
+    "hexo-util": "^0.6.3"
   }
 }
